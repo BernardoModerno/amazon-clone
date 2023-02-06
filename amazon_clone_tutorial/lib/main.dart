@@ -1,4 +1,6 @@
 import 'package:amazon_clone_tutorial/constants/global_variables.dart';
+import 'package:amazon_clone_tutorial/features/auth/screens/auth_screen.dart';
+import 'package:amazon_clone_tutorial/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,11 +20,13 @@ class MyApp extends StatelessWidget {
           primary: GlobalVariables.secondaryColor,
         ),
         appBarTheme: const AppBarTheme(
-            elevation: 0,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            )),
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
       ),
+      onGenerateRoute: (settings) => generateRoute(settings),
       home: Scaffold(
         appBar: AppBar(
           title: Center(child: const Text('Hello')),
@@ -34,10 +38,14 @@ class MyApp extends StatelessWidget {
                 'Flutter Demo Home Page',
               ),
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Click'),
-            ),
+            Builder(builder: (context) {
+              return ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, AuthScreen.routeName);
+                },
+                child: Text('Click'),
+              );
+            }),
           ],
         ),
       ),
